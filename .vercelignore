@@ -4,8 +4,6 @@
 .vercel
 _uv
 frontend/node_modules
-frontend/src
-frontend/public
 backend/ml/dataset
 *.pyc
 __pycache__

@@ -1,0 +1,29 @@
+{
+  "accuracy": 1.0,
+  "precision_macro": 1.0,
+  "recall_macro": 1.0,
+  "f1_macro": 1.0,
+  "num_classes": 19,
+  "categories": [
+    "EXAMINATION",
+    "ASSIGNMENT",
+    "ATTENDANCE",
+    "FEES",
+    "PLACEMENT",
+    "SCHOLARSHIP",
+    "EVENT",
+    "HOLIDAY",
+    "ACADEMIC",
+    "ADMINISTRATION",
+    "ADMISSION",
+    "WORKSHOP",
+    "INTERNSHIP",
+    "RESULT",
+    "REGISTRATION",
+    "HOSTEL",
+    "TRANSPORT",
+    "EMERGENCY",
+    "GENERAL"
+  ],
+  "sample_count": 2500
+}

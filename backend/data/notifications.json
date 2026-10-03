@@ -1,0 +1,15 @@
+[
+  {
+    "_id": "2cdb8827-7865-4c7c-a957-8a40fea42a7d",
+    "title": "\ud83d\udd34 Critical Notice: Internal Assessment Examination",
+    "message": "Internal assessment examination will be held Monday at 10 AM. Carry college ID cards.",
+    "notice_id": "bd025162-44bc-4b2b-9577-d2a76b489b85",
+    "importance_score": 95,
+    "type": "CRITICAL",
+    "read": false,
+    "user_id": null,
+    "created_at": "2026-10-03T05:51:23.441706+00:00",
+    "id": "2cdb8827-7865-4c7c-a957-8a40fea42a7d",
+    "updated_at": "2026-10-03T05:51:23.441706+00:00"
+  }
+]

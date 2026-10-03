@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "2ce13420-ed91-4d1a-af5a-c7b8d37bee6e",
+    "title": "Carry college ID card for Internal Assessment Exam",
+    "notice_id": "bd025162-44bc-4b2b-9577-d2a76b489b85",
+    "deadline": "Monday",
+    "priority": "CRITICAL",
+    "status": "Pending",
+    "risk_score": 78,
+    "risk_level": "CRITICAL",
+    "user_id": null,
+    "created_at": "2026-10-03T05:51:23.440705+00:00",
+    "completed_at": null,
+    "id": "2ce13420-ed91-4d1a-af5a-c7b8d37bee6e",
+    "updated_at": "2026-10-03T05:51:23.440705+00:00"
+  },
+  {
+    "_id": "0817896d-99b6-4f86-a89b-4ecf2cc87b2e",
+    "title": "Submit verified resume to Placement Cell",
+    "notice_id": "5f9e9ffa-fc03-42e8-9d64-f733d90d1f33",
+    "deadline": "Friday",
+    "priority": "HIGH",
+    "status": "In Progress",
+    "risk_score": 53,
+    "risk_level": "HIGH",
+    "user_id": null,
+    "created_at": "2026-10-03T05:51:23.441706+00:00",
+    "completed_at": null,
+    "id": "0817896d-99b6-4f86-a89b-4ecf2cc87b2e",
+    "updated_at": "2026-10-03T05:51:23.441706+00:00"
+  }
+]

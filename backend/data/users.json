@@ -1,0 +1,24 @@
+[
+  {
+    "name": "System Administrator",
+    "email": "admin@nexa.edu",
+    "password": "$2b$12$wY3aHORRB84Mn0VAcJVteOMvCmrcyHI9BUCfAM7ox3veozcBbZWKi",
+    "student_id": "ADM-001",
+    "role": "ADMIN",
+    "_id": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "id": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T05:51:23.087822+00:00",
+    "updated_at": "2026-10-03T05:51:23.087822+00:00"
+  },
+  {
+    "name": "Alex Chen",
+    "email": "student@nexa.edu",
+    "password": "$2b$12$GNBaJEjsElkcKT5HZ1BT/eJ9Jo4SWjZax3kJr.Zkq8C.XwIiRPOHS",
+    "student_id": "CS-2026-042",
+    "role": "STUDENT",
+    "_id": "7fa4cf38-4438-4d88-81b3-53bef2685d77",
+    "id": "7fa4cf38-4438-4d88-81b3-53bef2685d77",
+    "created_at": "2026-10-03T05:51:23.414702+00:00",
+    "updated_at": "2026-10-03T05:51:23.414702+00:00"
+  }
+]

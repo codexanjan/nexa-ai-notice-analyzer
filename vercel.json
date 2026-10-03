@@ -1,0 +1,14 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    {
+      "source": "/((?!api/|api$).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "SECRET_KEY": "nexa-production-jwt-key-b8ff3d",
+    "DATABASE_NAME": "nexa_db"
+  }
+}

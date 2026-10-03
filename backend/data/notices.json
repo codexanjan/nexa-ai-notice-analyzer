@@ -1,0 +1,636 @@
+[
+  {
+    "_id": "bd025162-44bc-4b2b-9577-d2a76b489b85",
+    "title": "Internal Assessment Examination Schedule",
+    "content": "All students are informed that the internal assessment examination for the current semester will be conducted on Monday at 10 AM in Main Auditorium. Students must carry their college ID cards and hall tickets. Entry closes 15 minutes before the exam.",
+    "category": "EXAMINATION",
+    "confidence": 1.0,
+    "importance": 75,
+    "importance_level": "HIGH",
+    "urgency": "HIGH",
+    "summary": "The internal assessment examination for the current semester will be conducted on Monday at 10 AM in Main Auditorium. Students must carry their college ID cards and hall tickets.",
+    "deadline": "Monday",
+    "event_date": "Monday",
+    "event_time": "10:00 AM",
+    "location": "Main Auditorium",
+    "department": "Examination Branch",
+    "semester": null,
+    "requirements": [
+      "College ID card",
+      "Hall Ticket"
+    ],
+    "actions": [
+      "Carry college ID cards and hall tick"
+    ],
+    "keywords": [
+      "internal",
+      "assessment",
+      "examination",
+      "semester",
+      "students",
+      "current"
+    ],
+    "explanation": [
+      "High-priority academic domain: Classified under Examination with critical weight (95%).",
+      "Upcoming deadline detected with 60% proximity score.",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (80%).",
+      "Near event timeline: Event proximity scored at 80%.",
+      "Overall classification: Ranked HIGH (75/100) due to impending commitments."
+    ],
+    "explanation_factors": {
+      "category_criticality": 95.0,
+      "deadline_proximity": 60.0,
+      "action_required": 100.0,
+      "urgency_signals": 80.0,
+      "consequence": 10.0,
+      "event_proximity": 80.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": null,
+    "created_at": "2026-10-03T05:51:23.422703+00:00",
+    "updated_at": "2026-10-03T05:51:23.422703+00:00",
+    "id": "bd025162-44bc-4b2b-9577-d2a76b489b85"
+  },
+  {
+    "_id": "5a71723d-3123-46a8-afb5-67b837b3f107",
+    "title": "Final Date for Examination Registration and Fee Payment",
+    "content": "Final date for examination registration and payment of fee is today at 5 PM. Students who fail to register will not be permitted to appear for the semester examination. Late submission will incur a severe penalty.",
+    "category": "REGISTRATION",
+    "confidence": 1.0,
+    "importance": 93,
+    "importance_level": "CRITICAL",
+    "urgency": "CRITICAL",
+    "summary": "Final date for examination registration and payment of fee is today at 5 PM. Students who fail to register will not be permitted to appear for the semester examination.",
+    "deadline": "today at 5 PM",
+    "event_date": "today",
+    "event_time": "5:00 PM",
+    "location": "Counter 3",
+    "department": "Administrative Block",
+    "semester": null,
+    "requirements": [],
+    "actions": [
+      "Register for will not be permitted"
+    ],
+    "keywords": [
+      "examination",
+      "registration",
+      "semester",
+      "submission",
+      "will",
+      "final"
+    ],
+    "explanation": [
+      "High-priority academic domain: Classified under Registration with critical weight (90%).",
+      "Imminent submission deadline: Deadline proximity scored at 95% due to urgent time window.",
+      "Mandatory student action required: Action score evaluated at 85%.",
+      "Explicit consequence stated: Stated consequence factor evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (100%).",
+      "Near event timeline: Event proximity scored at 95%.",
+      "Overall classification: Ranked CRITICAL (93/100) requiring immediate student and administrative attention."
+    ],
+    "explanation_factors": {
+      "category_criticality": 90.0,
+      "deadline_proximity": 95.0,
+      "action_required": 85.0,
+      "urgency_signals": 100.0,
+      "consequence": 100.0,
+      "event_proximity": 95.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": null,
+    "created_at": "2026-10-03T05:51:23.425709+00:00",
+    "updated_at": "2026-10-03T05:51:23.425709+00:00",
+    "id": "5a71723d-3123-46a8-afb5-67b837b3f107"
+  },
+  {
+    "_id": "5f9e9ffa-fc03-42e8-9d64-f733d90d1f33",
+    "title": "Google Campus Placement Drive 2026",
+    "content": "Campus recruitment drive by Google for Software Engineering roles is scheduled on 10 October 2026 at 9:30 AM in Main Auditorium. Eligible final year students must submit their verified resumes on or before Friday.",
+    "category": "PLACEMENT",
+    "confidence": 1.0,
+    "importance": 69,
+    "importance_level": "HIGH",
+    "urgency": "MEDIUM",
+    "summary": "Campus recruitment drive by Google for Software Engineering roles is scheduled on 10 October 2026 at 9:30 AM in Main Auditorium. Eligible final year students must submit their verified resumes on or before Friday.",
+    "deadline": "Friday",
+    "event_date": "10 October 2026",
+    "event_time": "9:30 AM",
+    "location": "Main Auditorium",
+    "department": "Placement Cell",
+    "semester": "Final Year",
+    "requirements": [],
+    "actions": [
+      "Submit their verified resumes"
+    ],
+    "keywords": [
+      "campus",
+      "recruitment",
+      "drive",
+      "google",
+      "software",
+      "engineering"
+    ],
+    "explanation": [
+      "High-priority academic domain: Classified under Placement with critical weight (80%).",
+      "Upcoming deadline detected with 60% proximity score.",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (80%).",
+      "Overall classification: Ranked HIGH (69/100) due to impending commitments."
+    ],
+    "explanation_factors": {
+      "category_criticality": 80.0,
+      "deadline_proximity": 60.0,
+      "action_required": 100.0,
+      "urgency_signals": 80.0,
+      "consequence": 10.0,
+      "event_proximity": 50.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": null,
+    "created_at": "2026-10-03T05:51:23.434706+00:00",
+    "updated_at": "2026-10-03T05:51:23.434706+00:00",
+    "id": "5f9e9ffa-fc03-42e8-9d64-f733d90d1f33"
+  },
+  {
+    "_id": "0b6bec2e-e2ba-4d52-9596-33e302414424",
+    "title": "Semester Tuition Fee Due Notice",
+    "content": "Notice regarding payment of semester tuition fee. Last date to pay fee without fine is 15 October 2026. A late fee penalty of Rs. 500 will be charged thereafter.",
+    "category": "FEES",
+    "confidence": 1.0,
+    "importance": 70,
+    "importance_level": "HIGH",
+    "urgency": "MEDIUM",
+    "summary": "Notice regarding payment of semester tuition fee. Last date to pay fee without fine is 15 October 2026.",
+    "deadline": "15 October 2026",
+    "event_date": "15 October 2026",
+    "event_time": "4:00 PM",
+    "location": "Accounts Counter",
+    "department": "Accounts Section",
+    "semester": null,
+    "requirements": [],
+    "actions": [
+      "Pay fee without fine is"
+    ],
+    "keywords": [
+      "semester",
+      "fee",
+      "notice",
+      "regarding",
+      "payment",
+      "tuition"
+    ],
+    "explanation": [
+      "High-priority academic domain: Classified under Fees with critical weight (85%).",
+      "Upcoming deadline detected with 45% proximity score.",
+      "Mandatory student action required: Action score evaluated at 85%.",
+      "Explicit consequence stated: Stated consequence factor evaluated at 80%.",
+      "Strong urgency signals: Notice contains pressing timing directives (95%).",
+      "Overall classification: Ranked HIGH (70/100) due to impending commitments."
+    ],
+    "explanation_factors": {
+      "category_criticality": 85.0,
+      "deadline_proximity": 45.0,
+      "action_required": 85.0,
+      "urgency_signals": 95.0,
+      "consequence": 80.0,
+      "event_proximity": 30.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": null,
+    "created_at": "2026-10-03T05:51:23.435706+00:00",
+    "updated_at": "2026-10-03T05:51:23.435706+00:00",
+    "id": "0b6bec2e-e2ba-4d52-9596-33e302414424"
+  },
+  {
+    "_id": "1a9c9dcf-f2b0-4f17-b1bd-3fc3c4b51255",
+    "title": "Declaration of College Holiday",
+    "content": "The college will remain closed on Friday on account of National Holiday. All scheduled lectures and laboratory sessions stand suspended. College offices will resume normal working hours on Monday.",
+    "category": "HOLIDAY",
+    "confidence": 1.0,
+    "importance": 28,
+    "importance_level": "LOW",
+    "urgency": "LOW",
+    "summary": "The college will remain closed on Friday on account of National Holiday. All scheduled lectures and laboratory sessions stand suspended.",
+    "deadline": null,
+    "event_date": "Friday",
+    "event_time": null,
+    "location": "Campus",
+    "department": "Registrar Office",
+    "semester": null,
+    "requirements": [
+      "Resume / CV"
+    ],
+    "actions": [
+      "Note college closure date"
+    ],
+    "keywords": [
+      "college",
+      "will",
+      "remain",
+      "closed",
+      "friday",
+      "account"
+    ],
+    "explanation": [
+      "Informational category: Categorized as Holiday.",
+      "Action required from students (75% action factor).",
+      "Overall classification: Ranked LOW (28/100) for general awareness."
+    ],
+    "explanation_factors": {
+      "category_criticality": 30.0,
+      "deadline_proximity": 0.0,
+      "action_required": 75.0,
+      "urgency_signals": 10.0,
+      "consequence": 10.0,
+      "event_proximity": 50.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": null,
+    "created_at": "2026-10-03T05:51:23.437705+00:00",
+    "updated_at": "2026-10-03T05:51:23.437705+00:00",
+    "id": "1a9c9dcf-f2b0-4f17-b1bd-3fc3c4b51255"
+  },
+  {
+    "_id": "2bad604c-ac35-410a-b380-aef0231de6aa",
+    "title": "Hands-on Workshop on Generative AI and Deep Learning",
+    "content": "Department of Computer Science is organizing a two-day certified workshop on Generative AI on 12 October 2026 at 10:00 AM in CS Lab 3. Students interested in participating may register before 10 October 2026.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 44,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Department of Computer Science is organizing a two-day certified workshop on Generative AI on 12 October 2026 at 10:00 AM in CS Lab 3. Students interested in participating may register before 10 October 2026.",
+    "deadline": "10 October 2026",
+    "event_date": "12 October 2026",
+    "event_time": "10:00 AM",
+    "location": "CS Lab 3",
+    "department": "Computer Science",
+    "semester": null,
+    "requirements": [],
+    "actions": [
+      "Register for workshop"
+    ],
+    "keywords": [
+      "workshop",
+      "october",
+      "department",
+      "computer",
+      "science",
+      "organizing"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Upcoming deadline detected with 45% proximity score.",
+      "Mandatory student action required: Action score evaluated at 85%.",
+      "Overall classification: Ranked MEDIUM (44/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 45.0,
+      "action_required": 85.0,
+      "urgency_signals": 10.0,
+      "consequence": 10.0,
+      "event_proximity": 30.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": null,
+    "created_at": "2026-10-03T05:51:23.439705+00:00",
+    "updated_at": "2026-10-03T05:51:23.439705+00:00",
+    "id": "2bad604c-ac35-410a-b380-aef0231de6aa"
+  },
+  {
+    "_id": "196358fb-fc48-4971-b01f-4cdb65848fc5",
+    "title": "Urgent Laboratory Safety Briefing",
+    "content": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM. Attendance is strictly compulsory.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 53,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM.",
+    "deadline": "tomorrow",
+    "event_date": "tomorrow",
+    "event_time": "2 PM",
+    "location": null,
+    "department": "Chemistry Dept",
+    "semester": null,
+    "requirements": [],
+    "actions": [],
+    "keywords": [
+      "attendance",
+      "mandatory",
+      "laboratory",
+      "safety",
+      "briefing",
+      "scheduled"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (85%).",
+      "Near event timeline: Event proximity scored at 90%.",
+      "Overall classification: Ranked MEDIUM (53/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 0.0,
+      "action_required": 100.0,
+      "urgency_signals": 85.0,
+      "consequence": 10.0,
+      "event_proximity": 90.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T05:51:25.145389+00:00",
+    "updated_at": "2026-10-03T05:51:25.145389+00:00",
+    "id": "196358fb-fc48-4971-b01f-4cdb65848fc5"
+  },
+  {
+    "_id": "ff2eaaa1-e37d-4220-9b24-cf695f555c1c",
+    "title": "Urgent Laboratory Safety Briefing",
+    "content": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM. Attendance is strictly compulsory.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 53,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM.",
+    "deadline": "tomorrow",
+    "event_date": "tomorrow",
+    "event_time": "2 PM",
+    "location": null,
+    "department": "Chemistry Dept",
+    "semester": null,
+    "requirements": [],
+    "actions": [],
+    "keywords": [
+      "attendance",
+      "mandatory",
+      "laboratory",
+      "safety",
+      "briefing",
+      "scheduled"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (85%).",
+      "Near event timeline: Event proximity scored at 90%.",
+      "Overall classification: Ranked MEDIUM (53/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 0.0,
+      "action_required": 100.0,
+      "urgency_signals": 85.0,
+      "consequence": 10.0,
+      "event_proximity": 90.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T07:11:36.425964+00:00",
+    "updated_at": "2026-10-03T07:11:36.425964+00:00",
+    "id": "ff2eaaa1-e37d-4220-9b24-cf695f555c1c"
+  },
+  {
+    "_id": "c1710358-2506-4da7-99a4-9e89580d41aa",
+    "title": "Urgent Laboratory Safety Briefing",
+    "content": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM. Attendance is strictly compulsory.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 53,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM.",
+    "deadline": "tomorrow",
+    "event_date": "tomorrow",
+    "event_time": "2 PM",
+    "location": null,
+    "department": "Chemistry Dept",
+    "semester": null,
+    "requirements": [],
+    "actions": [],
+    "keywords": [
+      "attendance",
+      "mandatory",
+      "laboratory",
+      "safety",
+      "briefing",
+      "scheduled"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (85%).",
+      "Near event timeline: Event proximity scored at 90%.",
+      "Overall classification: Ranked MEDIUM (53/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 0.0,
+      "action_required": 100.0,
+      "urgency_signals": 85.0,
+      "consequence": 10.0,
+      "event_proximity": 90.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T07:19:35.119249+00:00",
+    "updated_at": "2026-10-03T07:19:35.119249+00:00",
+    "id": "c1710358-2506-4da7-99a4-9e89580d41aa"
+  },
+  {
+    "_id": "a8817370-c4ee-444f-8b4d-4cfd34ff1603",
+    "title": "Urgent Laboratory Safety Briefing",
+    "content": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM. Attendance is strictly compulsory.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 53,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM.",
+    "deadline": "tomorrow",
+    "event_date": "tomorrow",
+    "event_time": "2 PM",
+    "location": null,
+    "department": "Chemistry Dept",
+    "semester": null,
+    "requirements": [],
+    "actions": [],
+    "keywords": [
+      "attendance",
+      "mandatory",
+      "laboratory",
+      "safety",
+      "briefing",
+      "scheduled"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (85%).",
+      "Near event timeline: Event proximity scored at 90%.",
+      "Overall classification: Ranked MEDIUM (53/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 0.0,
+      "action_required": 100.0,
+      "urgency_signals": 85.0,
+      "consequence": 10.0,
+      "event_proximity": 90.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T07:20:16.773201+00:00",
+    "updated_at": "2026-10-03T07:20:16.773201+00:00",
+    "id": "a8817370-c4ee-444f-8b4d-4cfd34ff1603"
+  },
+  {
+    "_id": "08c372d4-9ea0-462d-92f6-f360c38d099c",
+    "title": "Urgent Laboratory Safety Briefing",
+    "content": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM. Attendance is strictly compulsory.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 53,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM.",
+    "deadline": "tomorrow",
+    "event_date": "tomorrow",
+    "event_time": "2 PM",
+    "location": null,
+    "department": "Chemistry Dept",
+    "semester": null,
+    "requirements": [],
+    "actions": [],
+    "keywords": [
+      "attendance",
+      "mandatory",
+      "laboratory",
+      "safety",
+      "briefing",
+      "scheduled"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (85%).",
+      "Near event timeline: Event proximity scored at 90%.",
+      "Overall classification: Ranked MEDIUM (53/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 0.0,
+      "action_required": 100.0,
+      "urgency_signals": 85.0,
+      "consequence": 10.0,
+      "event_proximity": 90.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T10:29:33.113361+00:00",
+    "updated_at": "2026-10-03T10:29:33.113361+00:00",
+    "id": "08c372d4-9ea0-462d-92f6-f360c38d099c"
+  }
+]

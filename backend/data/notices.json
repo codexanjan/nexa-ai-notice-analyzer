@@ -688,5 +688,117 @@
     "created_at": "2026-10-03T13:32:41.260867+00:00",
     "updated_at": "2026-10-03T13:32:41.260867+00:00",
     "id": "4a4a8e6a-5b20-4861-b1ce-ba636cd55a74"
+  },
+  {
+    "_id": "11be1948-15d9-426f-a8f9-cf0e4e132210",
+    "title": "Urgent Laboratory Safety Briefing",
+    "content": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM. Attendance is strictly compulsory.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 53,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM.",
+    "deadline": "tomorrow",
+    "event_date": "tomorrow",
+    "event_time": "2 PM",
+    "location": null,
+    "department": "Chemistry Dept",
+    "semester": null,
+    "requirements": [],
+    "actions": [],
+    "keywords": [
+      "attendance",
+      "mandatory",
+      "laboratory",
+      "safety",
+      "briefing",
+      "scheduled"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (85%).",
+      "Near event timeline: Event proximity scored at 90%.",
+      "Overall classification: Ranked MEDIUM (53/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 0.0,
+      "action_required": 100.0,
+      "urgency_signals": 85.0,
+      "consequence": 10.0,
+      "event_proximity": 90.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T14:12:55.049051+00:00",
+    "updated_at": "2026-10-03T14:12:55.049051+00:00",
+    "id": "11be1948-15d9-426f-a8f9-cf0e4e132210"
+  },
+  {
+    "_id": "9e3e4754-5dec-409a-9d39-04f8ee8829f8",
+    "title": "Urgent Laboratory Safety Briefing",
+    "content": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM. Attendance is strictly compulsory.",
+    "category": "WORKSHOP",
+    "confidence": 1.0,
+    "importance": 53,
+    "importance_level": "MEDIUM",
+    "urgency": "MEDIUM",
+    "summary": "Mandatory laboratory safety briefing scheduled for tomorrow at 2 PM.",
+    "deadline": "tomorrow",
+    "event_date": "tomorrow",
+    "event_time": "2 PM",
+    "location": null,
+    "department": "Chemistry Dept",
+    "semester": null,
+    "requirements": [],
+    "actions": [],
+    "keywords": [
+      "attendance",
+      "mandatory",
+      "laboratory",
+      "safety",
+      "briefing",
+      "scheduled"
+    ],
+    "explanation": [
+      "Standard operational domain: Notice categorized as Workshop (50%).",
+      "Mandatory student action required: Action score evaluated at 100%.",
+      "Strong urgency signals: Notice contains pressing timing directives (85%).",
+      "Near event timeline: Event proximity scored at 90%.",
+      "Overall classification: Ranked MEDIUM (53/100) as a standard actionable notice."
+    ],
+    "explanation_factors": {
+      "category_criticality": 50.0,
+      "deadline_proximity": 0.0,
+      "action_required": 100.0,
+      "urgency_signals": 85.0,
+      "consequence": 10.0,
+      "event_proximity": 90.0,
+      "weights": {
+        "category_criticality": 0.2,
+        "deadline_proximity": 0.25,
+        "action_required": 0.2,
+        "urgency_signals": 0.15,
+        "consequence": 0.1,
+        "event_proximity": 0.1
+      }
+    },
+    "status": "PUBLISHED",
+    "attachment_url": null,
+    "created_by": "05caad09-29db-4ccd-921f-87a144e5f8ee",
+    "created_at": "2026-10-03T14:14:34.252368+00:00",
+    "updated_at": "2026-10-03T14:14:34.252368+00:00",
+    "id": "9e3e4754-5dec-409a-9d39-04f8ee8829f8"
   }
 ]

@@ -1,1 +1,9 @@
 .vercel
+.playwright-mcp
+.pytest_cache
+_uv
+__pycache__
+*.pyc
+*.pyo
+.env.local
+.env.production.local

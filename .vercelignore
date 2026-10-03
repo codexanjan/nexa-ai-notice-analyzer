@@ -1,0 +1,13 @@
+.git
+.pytest_cache
+.playwright-mcp
+.vercel
+_uv
+frontend/node_modules
+frontend/src
+frontend/public
+backend/ml/dataset
+*.pyc
+__pycache__
+sample_notice.jpg
+test_upload.py

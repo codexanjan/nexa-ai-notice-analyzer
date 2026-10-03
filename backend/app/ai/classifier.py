@@ -27,6 +27,54 @@ KEYWORD_MAPPINGS = {
     "GENERAL": ["lost and found", "notice", "cleanliness", "canteen", "library books"]
 }
 
+import json
+import re
+import math
+from collections import Counter
+
+class StandaloneClassifier:
+    def __init__(self, data: dict):
+        self.classes_ = data["classes"]
+        self.vocabulary = data["vocabulary"]
+        self.idf = data["idf"]
+        self.coef = data["coef"]
+        self.intercept = data["intercept"]
+        self.sublinear_tf = data.get("sublinear_tf", True)
+
+    def predict_proba(self, texts):
+        results = []
+        for text in texts:
+            tokens = re.findall(r'(?u)\b\w\w+\b', text.lower())
+            ngrams = list(tokens)
+            for i in range(len(tokens) - 1):
+                ngrams.append(tokens[i] + ' ' + tokens[i+1])
+            counts = Counter(ngrams)
+            feat_values = {}
+            sum_sq = 0.0
+            for term, count in counts.items():
+                if term in self.vocabulary:
+                    idx = self.vocabulary[term]
+                    tf = (1.0 + math.log(count)) if self.sublinear_tf else float(count)
+                    val = tf * self.idf[idx]
+                    feat_values[idx] = val
+                    sum_sq += val * val
+            norm = math.sqrt(sum_sq) or 1.0
+            for idx in feat_values:
+                feat_values[idx] /= norm
+            logits = []
+            for c_idx in range(len(self.classes_)):
+                score = self.intercept[c_idx]
+                row = self.coef[c_idx]
+                for f_idx, val in feat_values.items():
+                    score += row[f_idx] * val
+                logits.append(score)
+            max_logit = max(logits)
+            exp_scores = [math.exp(l - max_logit) for l in logits]
+            tot = sum(exp_scores) or 1.0
+            probs = [s / tot for s in exp_scores]
+            results.append(probs)
+        return results
+
 _model = None
 
 def get_classifier_model():
@@ -34,6 +82,15 @@ def get_classifier_model():
     if _model is not None:
         return _model
     
+    weights_path = settings.MODEL_DIR / "notice_classifier_weights.json"
+    if weights_path.exists():
+        try:
+            with open(weights_path, "r", encoding="utf-8") as f:
+                _model = StandaloneClassifier(json.load(f))
+                return _model
+        except Exception as e:
+            print(f"[Classifier] Failed to load JSON weights: {e}")
+
     model_path = settings.MODEL_DIR / "notice_classifier.pkl"
     if model_path.exists():
         try:
@@ -67,7 +124,10 @@ def classify_notice(text: str) -> Dict[str, Any]:
         try:
             probs = model.predict_proba([text])[0]
             classes = model.classes_
-            max_idx = probs.argmax()
+            if hasattr(probs, 'argmax'):
+                max_idx = probs.argmax()
+            else:
+                max_idx = probs.index(max(probs))
             predicted_class = classes[max_idx]
             confidence = float(probs[max_idx])
 

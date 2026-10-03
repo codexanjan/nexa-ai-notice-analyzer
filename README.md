@@ -188,3 +188,14 @@ npm run lint
 
 ## 📄 License
 This project is licensed under the MIT License.
+
+---
+
+<div align="center">
+
+Made with ❤️ by [Anjan Shetty](https://github.com/codexanjan)
+
+[![GitHub](https://img.shields.io/badge/GitHub-codexanjan-181717?style=flat&logo=github)](https://github.com/codexanjan)
+
+</div>
+

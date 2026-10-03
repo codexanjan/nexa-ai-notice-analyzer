@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Sparkles, Shield, Cpu, Terminal, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -49,16 +49,17 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Core Formulas & Intelligence */}
+          {/* Intelligence Capabilities */}
           <div>
             <h4 className="font-display font-semibold text-xs text-white uppercase tracking-wider mb-3">
-              Formulas & Standards
+              Intelligence Engine
             </h4>
-            <ul className="space-y-2 text-xs text-muted font-mono">
-              <li>I = 0.20C + 0.25D + 0.20A + 0.15U + 0.10K + 0.10E</li>
-              <li>U = 0.50D + 0.30E + 0.20K</li>
-              <li>R = 0.50T + 0.30I + 0.20S</li>
-              <li className="text-[11px] text-gray-400">19 Distinct Academic Categories</li>
+            <ul className="space-y-2 text-xs text-muted">
+              <li>Document OCR & Text Extraction</li>
+              <li>Automated Categorization</li>
+              <li>Explainable Urgency Scoring</li>
+              <li>Action & Deadline Extraction</li>
+              <li>Real-Time In-App Alerts</li>
             </ul>
           </div>
         </div>

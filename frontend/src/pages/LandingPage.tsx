@@ -277,41 +277,8 @@ export const LandingPage: React.FC = () => {
             </div>
             <h3 className="font-display font-bold text-lg text-white">Action & Task Generation</h3>
             <p className="text-xs text-muted leading-relaxed">
-              Automatically discovers student tasks, calculates dynamic deadline risk pressure (R = 0.50T + 0.30I + 0.20S), and dispatches in-app alerts.
+              Automatically discovers student tasks, calculates dynamic deadline urgency, and dispatches in-app alerts.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* MATHEMATICAL RIGOR SHOWCASE */}
-      <section className="p-8 sm:p-12 rounded-3xl glass-panel border border-white/15 bg-gradient-to-br from-surface to-background space-y-6">
-        <div className="max-w-3xl space-y-2">
-          <span className="text-xs font-mono text-primary uppercase">Defensible Academic Methodology</span>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl text-white">
-            Transparent Formulation Over Black-Box Hallucinations
-          </h2>
-          <p className="text-xs text-muted leading-relaxed">
-            NEXA separates document classification (powered by machine learning on 2,500+ realistic college samples) from importance scoring (computed via deterministic rule-based algorithms).
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
-          <div className="p-4 rounded-xl bg-surface border border-white/10 font-mono text-xs space-y-2">
-            <span className="text-primary font-bold">1. Overall Importance</span>
-            <p className="text-gray-300 text-[11px]">I = 0.20C + 0.25D + 0.20A + 0.15U + 0.10K + 0.10E</p>
-            <span className="text-[10px] text-muted block">Normalized 0–100 scale</span>
-          </div>
-
-          <div className="p-4 rounded-xl bg-surface border border-white/10 font-mono text-xs space-y-2">
-            <span className="text-warning font-bold">2. Urgency Formula</span>
-            <p className="text-gray-300 text-[11px]">U = 0.50D + 0.30E + 0.20K</p>
-            <span className="text-[10px] text-muted block">Temporal & consequence pressure</span>
-          </div>
-
-          <div className="p-4 rounded-xl bg-surface border border-white/10 font-mono text-xs space-y-2">
-            <span className="text-critical font-bold">3. Task Deadline Risk</span>
-            <p className="text-gray-300 text-[11px]">R = 0.50T + 0.30I + 0.20S</p>
-            <span className="text-[10px] text-muted block">Dynamic risk re-evaluation</span>
           </div>
         </div>
       </section>

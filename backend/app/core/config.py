@@ -22,7 +22,7 @@ except OSError:
 class Settings(BaseModel):
     PROJECT_NAME: str = "NEXA — AI Notice Intelligence System"
     TAGLINE: str = "Read Less. Know More."
-    VERSION: str = "1.1.0"
+    VERSION: str = "1.1.1"
     SECRET_KEY: str = os.getenv("SECRET_KEY") or secrets.token_urlsafe(48)
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days

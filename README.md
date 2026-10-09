@@ -1,201 +1,75 @@
-# NEXA — AI Notice Intelligence System
-### *Read Less. Know More.*
+# NEXA — Campus Notice Intelligence
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-00F0FF?style=for-the-badge&logo=vercel&logoColor=black)](https://nexa-ai-notice-platform.vercel.app)
-[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+**Live app:** [nexa-anjan.vercel.app](https://nexa-anjan.vercel.app)
 
----
+## Try before signing up
 
-## 🌐 Live Production Deployment
-**Host URL:** **[https://nexa-ai-notice-platform.vercel.app](https://nexa-ai-notice-platform.vercel.app)**
+The home page explains both portals and includes a real text-analysis sandbox. Paste a circular to see its category, summary, importance, urgency and extracted actions. The classifier uses exported trained weights and transparent scoring rules. Verify dates and actions against the original circular. Initial campus notices are fictional samples.
 
----
+## Student portal
 
-## 🔑 Pre-Seeded Demo Accounts
+- Search and filter published notices by category, importance and urgency.
+- Read summaries and explanations of each priority score.
+- Save notice actions or custom tasks to your personal taskboard and track completion.
+- Review deadline groups and in-app alerts. Read states belong to each user.
+- The notice feed and alert bell refresh every 15 seconds using polling.
 
-Experience NEXA instantly with pre-seeded role-based credentials:
+[Student sign-in](https://nexa-anjan.vercel.app/login?portal=student)
 
-| Role | Email | Password | Access Capabilities |
-| :--- | :--- | :--- | :--- |
-| **Student** | `student@nexa.edu` | `student123` | Notice Feed, AI Explainability Modal, Deadlines, Task Sync, Notifications |
-| **Admin** | `admin@nexa.edu` | `admin123` | Upload Notices (PDF, Images, DOCX, Text), Create Notice, Analytics Intelligence |
+## Administrator portal
 
----
+- Separate navigation for dashboard, notice management, creation, upload and analytics.
+- Analyze digital PDFs, DOCX documents (including tables) and TXT files.
+- Create, edit, save drafts, publish, archive and delete notices.
+- Review category and importance analytics.
+- Only institution administrators can change notices. Public registration creates student accounts.
 
-## 📌 Problem & Solution
+[Administrator sign-in](https://nexa-anjan.vercel.app/login?portal=admin)
 
-### The Campus Problem
-Colleges and universities publish hundreds of unformatted, dense circulars, scanned PDFs, and memo images each month. Crucial scholarship deadlines, examination fee cutoffs, and placement requirements get buried in bureaucratic text, causing students to miss life-changing opportunities and incur severe late penalties.
+## Demo access
 
-### The NEXA Solution
-**NEXA** is an AI-powered college notice intelligence platform that transforms unstructured notices into prioritized, structured, explainable, and actionable student intelligence in seconds.
+Use Student Demo or Admin Demo on the sign-in page to fill credentials, then sign in.
 
----
+| Account | Email | Password |
+| --- | --- | --- |
+| Shared student demo | student@nexa.edu | student123 |
+| Admin preview demo | admin@nexa.edu | admin123 |
 
-## ✨ Novelty & Standout Features
+The public admin demo is read-only with a durable database. Create a personal student account for your own tasks. Do not place private information in shared demo accounts.
 
-### 1. 🧠 Transparent & Explainable AI Importance Scoring (0–100)
-Unlike opaque "black box" classifiers, NEXA's importance engine computes scores deterministically across 5 orthogonal weighted dimensions:
+## Production storage
 
-$$\text{Importance Score} = 0.20 \cdot C + 0.25 \cdot D + 0.20 \cdot A + 0.15 \cdot U + 0.10 \cdot Q + 0.10 \cdot E$$
+Production uses a dedicated Neon PostgreSQL database through Vercel's existing free integration. Accounts, notices, tasks and notification read states persist across deployments. MongoDB and a local JSON development store are also supported.
 
-- **$C$ — Category Criticality (20%)**: High-stakes domains (Examinations, Fees, Registrations, Placements).
-- **$D$ — Deadline Proximity (25%)**: Proximity to deadline (<=24 hrs = 100%, <=3 days = 85%, <=7 days = 60%).
-- **$A$ — Student Action Required (20%)**: Imperative action verbs ("must submit", "mandatory payment", "compulsory").
-- **$U$ — Urgency Signals (15%)**: Explicit urgency terms ("immediate", "strict cutoff", "last date").
-- **$Q$ — Consequence Severity (10%)**: Negative consequences ("late fee fine", "disqualified", "not permitted").
-- **$E$ — Event Timeline Proximity (10%)**: Imminence of mentioned workshop, drive, or session dates.
+Production environment variables:
 
-### 2. ⚡ Multi-Tier Summaries ("Explain Like I'm 5")
-Every notice offers 3 selectable comprehension levels:
-- **Executive Takeaway**: 1-2 sentence core message.
-- **Action Checklist**: What the student must do step-by-step.
-- **Requirements & Documents**: College IDs, fee receipts, resumes, or hall tickets detected by the parser.
+- `DATABASE_URL` from Neon, or `MONGODB_URI` for MongoDB.
+- `SECRET_KEY`: a private random signing key configured in the host, never source control.
+- `ADMIN_EMAIL` and `ADMIN_PASSWORD`: provision a private administrator at startup. Use different credentials from the public demo.
 
-### 3. 📄 Multimodal Document Parsing
-Supports instant text extraction from:
-- **Scanned PDF Documents**: Parsed via PyMuPDF vector and text layout extraction.
-- **Office Files**: Native `.docx` text runs and tables.
-- **Images & Photos**: Embedded OCR preprocessing.
-- **Raw Text & Pasted Circulars**: Instant real-time interactive sandbox analysis.
+`GET /api/health` reports database, durability and live/demo mode. Without a production database, the UI warns that changes are temporary. A configured connection failure does not silently fall back to temporary storage.
 
-### 4. ⏱️ Active Deadlines Countdown Center
-Categorizes actionable items into:
-- **Due Today** ($\le$ 24 hours remaining)
-- **Due This Week** (24 – 168 hours remaining)
-- **Upcoming** (> 7 days remaining)
-- **Completed Archive**
+## Document limitations
 
-### 5. 📋 Smart Task Sync
-Auto-extracts actionable tasks from circulars and lets students add, check off, or track them in their personal dashboard.
+Digital PDF, DOCX and TXT extraction is tested. Image OCR needs optional RapidOCR or an installed Tesseract engine; these are not included in this Vercel release. Image and scanned PDF uploads return a clear extraction error rather than fabricated content. Legacy `.doc` and unsupported types are rejected. Uploads are limited to 10 MB.
 
-### 6. 📊 Real-Time Analytics Intelligence
-- Category volume distributions.
-- Importance level heatmaps (Critical, High, Medium, Low).
-- Timeline velocity of campus communications.
+## Develop and verify
 
----
+Use Python 3.12 and Node.js 24.
 
-## 🏗️ Architecture & Technology Stack
-
-```
-nexa-ai-notice-platform/
-├── api/
-│   ├── index.py              # Serverless entrypoint for Vercel
-│   └── requirements.txt      # Serverless dependencies
-├── backend/
-│   ├── app/
-│   │   ├── api/              # FastAPI Routers (auth, notices, tasks, deadlines, etc.)
-│   │   ├── ai/               # NLP Classifier & Importance Scoring Engine
-│   │   ├── core/             # Configuration, Database Manager & Security
-│   │   ├── ocr/              # PDF & Document Extractors
-│   │   ├── schemas/          # Pydantic Schemas & DTOs
-│   │   └── services/         # Business Logic & Document Services
-│   └── tests/                # Automated Pytest Suite
-├── frontend/
-│   ├── src/
-│   │   ├── components/       # Reusable UI components & layouts
-│   │   ├── pages/            # Student, Admin & Auth views
-│   │   ├── services/         # Axios API clients
-│   │   └── store/            # React Auth context & session storage
-│   └── public/               # Logos, hero graphics, and static assets
-├── vercel.json               # Production Vercel rewrite configuration
-└── requirements.txt          # Python dependencies
-```
-
-- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS, Lucide Icons, Framer Motion, Recharts.
-- **Backend**: FastAPI, Uvicorn, Pydantic v2, Scikit-learn (TF-IDF), PyMuPDF, Python-JOSE, Passlib.
-- **Database**: High-performance persistent document store with automated MongoDB Atlas driver support.
-- **Hosting**: Vercel Serverless Edge (Static CDN + Python ASGI runtime).
-
----
-
-## 🚀 Local Development Setup
-
-### 1. Prerequisites
-- **Node.js** (v18+)
-- **Python** (v3.10+)
-
-### 2. Backend Setup
-```bash
-# Navigate to backend directory
-cd backend
-
-# Install Python dependencies
-pip install -r ../requirements.txt
-
-# Run backend development server
-uvicorn app.main:app --reload --port 8000
-```
-API Documentation will be accessible at: `http://localhost:8000/docs`
-
-### 3. Frontend Setup
-```bash
-# In a separate terminal, navigate to frontend directory
+```powershell
+python -m pip install -r requirements.txt
+python -m pytest backend/tests -q
 cd frontend
-
-# Install Node dependencies
-npm install
-
-# Start Vite development server
-npm run dev
-```
-Frontend interface will be live at: `http://localhost:5173`
-
----
-
-## 🧪 Testing Suite
-
-### Running Backend Tests
-```bash
-python -m pytest backend/tests
-```
-Verifies:
-- `test_nlp_and_scoring.py`: TF-IDF categorization, importance scoring boundaries, deadline extraction.
-- `test_api_endpoints.py`: End-to-end authentication, notice creation, deadlines, tasks, and analytics.
-
-### Running Frontend Checks
-```bash
-cd frontend
-# TypeScript verification
+npm ci
 npm run build
-
-# Code hygiene & linting
 npm run lint
 ```
 
----
+Start `python -m uvicorn app.main:app --port 8000` from `backend` and `npm run dev` from `frontend`. The frontend proxies `/api` to port 8000.
 
-## 📡 Core API Endpoints
+Tests isolate storage and cover NLP/scoring, authentication, role escalation, task ownership, draft visibility, notification isolation, numeric sorting, digital documents and OCR failure. The production build checks TypeScript. Existing lint warnings and build-tool dependency advisories remain; the frontend runtime dependency audit reports no advisories.
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/health` | System health and database connection status |
-| `POST` | `/api/auth/login` | Authenticate user and receive JWT token |
-| `POST` | `/api/auth/register` | Register a new student or faculty account |
-| `GET` | `/api/notices` | List notices with filter by category/urgency |
-| `POST` | `/api/notices` | Create a new notice (Admin required) |
-| `POST` | `/api/notices/upload` | Upload & extract PDF, DOCX, or Image circulars |
-| `POST` | `/api/ai/analyze` | Real-time AI classification & importance scoring |
-| `GET` | `/api/deadlines` | Grouped deadlines (Due Today / This Week / Upcoming) |
-| `GET` | `/api/tasks` | Student actionable task items |
-| `GET` | `/api/analytics/dashboard`| Aggregate category, urgency, and timeline metrics |
+## Version 1.1.0
 
----
-
-## 📄 License
-This project is licensed under the MIT License.
-
----
-
-<div align="center">
-
-Made with ❤️ by [Anjan Shetty](https://github.com/codexanjan)
-
-[![GitHub](https://img.shields.io/badge/GitHub-codexanjan-181717?style=flat&logo=github)](https://github.com/codexanjan)
-
-</div>
-
+Fixes prototype access controls and persistence, adds portal showcases, notice editing/status management, automatic feed refresh and visible errors, and loads administrator charts only when needed.

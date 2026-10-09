@@ -16,11 +16,11 @@ import { NotificationsPage } from './pages/student/NotificationsPage';
 import { ProfilePage } from './pages/student/ProfilePage';
 
 // Admin Pages
-import { AdminDashboard } from './pages/admin/AdminDashboard';
-import { NoticeManagementPage } from './pages/admin/NoticeManagementPage';
-import { UploadNoticePage } from './pages/admin/UploadNoticePage';
-import { CreateNoticePage } from './pages/admin/CreateNoticePage';
-import { AnalyticsPage } from './pages/admin/AnalyticsPage';
+const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard').then(m => ({default: m.AdminDashboard})));
+const NoticeManagementPage = React.lazy(() => import('./pages/admin/NoticeManagementPage').then(m => ({default: m.NoticeManagementPage})));
+const UploadNoticePage = React.lazy(() => import('./pages/admin/UploadNoticePage').then(m => ({default: m.UploadNoticePage})));
+const CreateNoticePage = React.lazy(() => import('./pages/admin/CreateNoticePage').then(m => ({default: m.CreateNoticePage})));
+const AnalyticsPage = React.lazy(() => import('./pages/admin/AnalyticsPage').then(m => ({default: m.AnalyticsPage})));
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; adminOnly?: boolean }> = ({
   children,
@@ -37,8 +37,8 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode; adminOnly?: boolean 
     );
   }
 
-  // In demo / prototype mode, allow access or redirect to login
-  if (adminOnly && !isAdmin && user) {
+  if (!user) return <Navigate to="/login" replace />;
+  if (adminOnly && !isAdmin) {
     return <Navigate to="/dashboard" replace />;
   }
 
@@ -50,6 +50,7 @@ export const App: React.FC = () => {
     <AuthProvider>
       <Router>
         <AppLayout>
+          <React.Suspense fallback={<p className="text-center p-12 text-muted">Loading portal…</p>}>
           <Routes>
             {/* Public Pages */}
             <Route path="/" element={<LandingPage />} />
@@ -57,14 +58,15 @@ export const App: React.FC = () => {
             <Route path="/register" element={<RegisterPage />} />
 
             {/* Student & General Dashboard */}
-            <Route path="/dashboard" element={<StudentDashboard />} />
+            <Route path="/dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
             <Route path="/notices" element={<NoticeFeedPage />} />
             <Route path="/notices/:id" element={<NoticeDetailPage />} />
             <Route path="/deadlines" element={<DeadlinesPage />} />
-            <Route path="/tasks" element={<TasksPage />} />
-            <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/upload" element={<UploadNoticePage />} />
+            <Route path="/tasks" element={<ProtectedRoute><TasksPage /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><NotificationsPage /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+            <Route path="/upload" element={<Navigate to="/admin/upload" replace />} />
+            <Route path="/student" element={<Navigate to="/dashboard" replace />} />
 
             {/* Admin Management Pages */}
             <Route
@@ -111,6 +113,7 @@ export const App: React.FC = () => {
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </React.Suspense>
         </AppLayout>
       </Router>
     </AuthProvider>

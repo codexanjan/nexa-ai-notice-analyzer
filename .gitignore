@@ -7,3 +7,6 @@ __pycache__
 *.pyo
 .env.local
 .env.production.local
+.env*
+/.agents/
+/skills-lock.json

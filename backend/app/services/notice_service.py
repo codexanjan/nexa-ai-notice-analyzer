@@ -10,7 +10,7 @@ from app.ai.urgency_engine import calculate_urgency
 from app.ai.summarizer import generate_summary
 from app.ai.explainability import generate_explanation
 
-def analyze_notice_text(text: str, override_category: Optional[str] = None) -> Dict[str, Any]:
+def analyze_notice_text(text: str, override_category: Optional[str] = None, deadline_override: Optional[str] = None, event_date_override: Optional[str] = None) -> Dict[str, Any]:
     """
     Executes the entire NEXA AI Intelligence Pipeline on raw notice text:
     Text Extraction -> Cleaning -> Classification -> Entity Extraction ->
@@ -29,8 +29,10 @@ def analyze_notice_text(text: str, override_category: Optional[str] = None) -> D
 
     # 2. Entity & Deadline & Action Extraction
     entities = extract_all_entities(cleaned)
-    deadline = entities.get("deadline")
-    event_date = entities.get("date")
+    deadline = deadline_override or entities.get("deadline")
+    event_date = event_date_override or entities.get("date")
+    entities["deadline"] = deadline
+    entities["date"] = event_date
     event_time = entities.get("time")
     actions = entities.get("actions", [])
 
@@ -112,7 +114,7 @@ async def create_notice(data: Dict[str, Any], user_id: Optional[str] = None) -> 
     title = data.get("title") or content[:50]
     
     # Run AI pipeline
-    analysis = analyze_notice_text(content, override_category=data.get("category"))
+    analysis = analyze_notice_text(content, override_category=data.get("category"), deadline_override=data.get("deadline"), event_date_override=data.get("event_date"))
     
     notice_doc = {
         "_id": str(uuid.uuid4()),
@@ -191,8 +193,8 @@ async def update_notice(notice_id: str, updates: Dict[str, Any]) -> Optional[Dic
         return None
     
     # If content changed, re-run AI pipeline
-    if "content" in updates and updates["content"] != existing["content"]:
-        analysis = analyze_notice_text(updates["content"], override_category=updates.get("category"))
+    if any(key in updates for key in ("content", "category", "deadline", "event_date")):
+        analysis = analyze_notice_text(updates.get("content", existing["content"]), override_category=updates.get("category", existing.get("category")), deadline_override=updates.get("deadline", existing.get("deadline")), event_date_override=updates.get("event_date", existing.get("event_date")))
         updates["category"] = analysis["category"]["value"]
         updates["confidence"] = analysis["category"]["confidence"]
         updates["importance"] = analysis["importance"]["score"]

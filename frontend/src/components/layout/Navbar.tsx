@@ -30,6 +30,7 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!user) { return; }
     const fetchNotifications = async () => {
       try {
         const notifs = await notificationApi.getNotifications();
@@ -42,7 +43,7 @@ export const Navbar: React.FC = () => {
     fetchNotifications();
     const interval = setInterval(fetchNotifications, 15000);
     return () => clearInterval(interval);
-  }, []);
+  }, [user?.id]);
 
   const handleMarkAllRead = async () => {
     try {
@@ -54,16 +55,17 @@ export const Navbar: React.FC = () => {
     }
   };
 
-  const navLinks = [
+  const navLinks = isAdmin ? [
+    { label: 'Admin', path: '/admin', icon: Shield },
+    { label: 'Manage', path: '/admin/notices', icon: FileText },
+    { label: 'Create', path: '/admin/create', icon: Plus },
+    { label: 'Analytics', path: '/admin/analytics', icon: LayoutDashboard },
+  ] : user ? [
     { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { label: 'Notices', path: '/notices', icon: FileText },
     { label: 'Deadlines', path: '/deadlines', icon: Clock },
     { label: 'Tasks', path: '/tasks', icon: CheckSquare },
-  ];
-
-  if (isAdmin) {
-    navLinks.push({ label: 'Admin', path: '/admin', icon: Shield });
-  }
+  ] : [{ label: 'Notice preview', path: '/notices', icon: FileText }];
 
   const isActive = (path: string) => {
     if (path === '/dashboard' && location.pathname === '/dashboard') return true;
@@ -122,13 +124,13 @@ export const Navbar: React.FC = () => {
           {/* Right Action Controls */}
           <div className="flex items-center gap-3">
             {/* Upload Notice Button */}
-            <Link
-              to={isAdmin ? "/admin/upload" : "/upload"}
+            {isAdmin && <Link
+              to="/admin/upload"
               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary hover:bg-primary-hover text-black text-xs font-bold tracking-wide transition shadow-glow-primary"
             >
               <UploadCloud className="w-4 h-4" />
               <span>Upload Notice</span>
-            </Link>
+            </Link>}
 
             {/* Notifications Dropdown */}
             <div className="relative">
@@ -285,14 +287,14 @@ export const Navbar: React.FC = () => {
               </Link>
             );
           })}
-          <Link
-            to={isAdmin ? "/admin/upload" : "/upload"}
+          {isAdmin && <Link
+            to="/admin/upload"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center justify-center gap-2 w-full py-2.5 mt-2 rounded-xl bg-primary text-black text-xs font-bold"
           >
             <UploadCloud className="w-4 h-4" />
             Upload Notice
-          </Link>
+          </Link>}
         </div>
       )}
     </nav>

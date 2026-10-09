@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../store/authStore';
 import { Sparkles, Lock, Mail, ArrowRight, AlertCircle, Shield, User } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
-  const { login, isAdmin } = useAuth();
+  const { login } = useAuth();
+  const [params] = useSearchParams();
+  const portal = params.get('portal') === 'admin' ? 'Admin' : 'Student';
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -18,7 +20,8 @@ export const LoginPage: React.FC = () => {
     setLoading(true);
     try {
       await login(email, password);
-      navigate('/dashboard');
+      const signedIn = JSON.parse(localStorage.getItem('nexa_user') || '{}');
+      navigate(signedIn.role === 'ADMIN' ? '/admin' : '/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Invalid email or password. Please try again.');
     } finally {
@@ -44,9 +47,11 @@ export const LoginPage: React.FC = () => {
         <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/40 flex items-center justify-center text-primary mx-auto shadow-glow-primary">
           <Sparkles className="w-6 h-6" />
         </div>
-        <h1 className="font-display font-bold text-2xl text-white">Sign In to NEXA</h1>
+        <h1 className="font-display font-bold text-2xl text-white">NEXA {portal} Portal</h1>
         <p className="text-xs text-muted">AI Notice Intelligence System</p>
       </div>
+
+      <div className="flex justify-center gap-4 text-sm"><Link to="/login?portal=student" className="text-primary">Student sign-in</Link><Link to="/login?portal=admin" className="text-warning">Admin sign-in</Link></div>
 
       {/* Quick Demo Credentials Bar */}
       <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-2">

@@ -34,10 +34,14 @@ async def require_admin(authorization: Optional[str] = Header(None)) -> dict:
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Admin privileges required"
         )
+    if user.get("email") == "admin@nexa.edu" and db_manager.is_durable:
+        raise HTTPException(status_code=403, detail="The public admin demo is read-only. Sign in with your institution admin account to publish changes.")
     return user
 
 @router.post("/register", response_model=TokenResponse)
 async def register(user_data: UserRegister):
+    if user_data.role.value != "STUDENT":
+        raise HTTPException(status_code=403, detail="Staff accounts must be provisioned by the institution administrator")
     users_col = db_manager.get_collection("users")
     existing = await users_col.find_one({"email": user_data.email.lower()})
     if existing:

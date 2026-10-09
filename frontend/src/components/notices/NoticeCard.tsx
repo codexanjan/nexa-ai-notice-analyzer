@@ -17,9 +17,12 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({ notice, onTaskCreated })
   const navigate = useNavigate();
   const [showExplain, setShowExplain] = useState(false);
   const [taskAdded, setTaskAdded] = useState(false);
+  const [taskError, setTaskError] = useState('');
 
   const handleQuickTask = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (!localStorage.getItem('nexa_token')) { navigate('/login'); return; }
+    setTaskError('');
     try {
       const taskTitle = notice.actions && notice.actions.length > 0
         ? notice.actions[0]
@@ -36,12 +39,13 @@ export const NoticeCard: React.FC<NoticeCardProps> = ({ notice, onTaskCreated })
       if (onTaskCreated) onTaskCreated();
       setTimeout(() => setTaskAdded(false), 2500);
     } catch (err) {
-      console.error("Failed to create task from notice:", err);
+      setTaskError('Could not save task. Please try again.');
     }
   };
 
   return (
     <>
+      {taskError && <p role="alert" className="text-critical text-xs">{taskError}</p>}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}

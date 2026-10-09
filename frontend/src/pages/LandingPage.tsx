@@ -28,15 +28,18 @@ export const LandingPage: React.FC = () => {
     "All students are hereby informed that the internal assessment examination for the current semester will be conducted on Monday at 10 AM in Main Auditorium. Students must carry their college ID cards and hall tickets. Entry closes 15 minutes before exam."
   );
   const [demoLoading, setDemoLoading] = useState(false);
+  const [demoError, setDemoError] = useState('');
   const [demoResult, setDemoResult] = useState<AIAnalysisResult | null>(null);
 
   const handleRunDemo = async () => {
     setDemoLoading(true);
+    setDemoError('');
+    setDemoResult(null);
     try {
       const res = await noticeApi.analyzeNotice(demoText);
       setDemoResult(res);
     } catch (err) {
-      console.error(err);
+      setDemoError('Analysis could not complete. Check your connection and try again.');
     } finally {
       setDemoLoading(false);
     }
@@ -85,15 +88,15 @@ export const LandingPage: React.FC = () => {
               to="/dashboard"
               className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm tracking-wide transition-all duration-300 shadow-glow-primary hover:scale-105"
             >
-              <span>Explore Platform</span>
+              <span>Student Portal</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             <Link
-              to="/login"
+              to="/login?portal=admin"
               className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass-panel hover:bg-white/10 text-white font-medium text-sm tracking-wide transition border border-white/15"
             >
-              <span>Sign In</span>
+              <span>Admin Portal</span>
             </Link>
           </div>
 
@@ -123,6 +126,26 @@ export const LandingPage: React.FC = () => {
         </motion.div>
       </section>
 
+      <section className="max-w-5xl mx-auto space-y-6" id="features">
+        <h2 className="text-3xl font-bold text-center">One campus. Two focused portals.</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="glass-panel p-6 rounded-2xl border border-primary/30 space-y-4">
+            <h3 className="text-xl font-bold text-primary">For students</h3>
+            <p className="text-gray-300">Find what matters, understand why it matters, and take action.</p>
+            <ul className="space-y-2 text-sm text-gray-300"><li>Search notices by category, priority and urgency</li><li>Read concise summaries and score explanations</li><li>Save your own tasks and track completion</li><li>Check deadlines and personal in-app alerts</li></ul>
+            <Link to="/login?portal=student" className="inline-block text-primary font-semibold">Open student portal →</Link>
+          </div>
+          <div className="glass-panel p-6 rounded-2xl border border-warning/30 space-y-4">
+            <h3 className="text-xl font-bold text-warning">For administrators</h3>
+            <p className="text-gray-300">Turn a circular into a clear, actionable campus update.</p>
+            <ul className="space-y-2 text-sm text-gray-300"><li>Extract digital PDFs, Word documents and text files</li><li>Preview classification, summary and extracted actions</li><li>Create, publish, archive and manage notices</li><li>Review category and priority analytics</li></ul>
+            <Link to="/login?portal=admin" className="inline-block text-warning font-semibold">Open admin portal →</Link>
+          </div>
+        </div>
+        <p className="text-sm text-muted text-center">Try real analysis below without an account. Campus examples are fictional sample notices. Portal demo accounts are shared; use your own account for personal tasks. The public admin demo is read-only with a live database.</p>
+        <p className="text-sm text-muted text-center">The notice feed refreshes every 15 seconds. Analysis uses a trained classifier and transparent scoring rules. Check dates and requirements against the original notice. Image OCR requires an installed OCR engine.</p>
+      </section>
+
       {/* INTERACTIVE DEMO TESTING SANDBOX */}
       <section className="max-w-5xl mx-auto rounded-3xl glass-panel border border-white/15 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
@@ -137,7 +160,7 @@ export const LandingPage: React.FC = () => {
           </div>
           <button
             onClick={handleRunDemo}
-            disabled={demoLoading}
+            disabled={demoLoading || !demoText.trim()}
             className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-xs tracking-wide transition disabled:opacity-50 shadow-glow-primary"
           >
             {demoLoading ? (
@@ -154,11 +177,14 @@ export const LandingPage: React.FC = () => {
           </button>
         </div>
 
+        {demoError && <p role="alert" className="text-critical pt-4">{demoError}</p>}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-6">
           {/* Input text */}
           <div className="space-y-3">
-            <label className="text-xs font-mono text-muted uppercase">Unstructured College Notice Input</label>
+            <label htmlFor="demo-notice" className="text-xs font-mono text-muted uppercase">Unstructured College Notice Input</label>
             <textarea
+              id="demo-notice"
+              maxLength={20000}
               value={demoText}
               onChange={(e) => setDemoText(e.target.value)}
               rows={7}
@@ -255,9 +281,9 @@ export const LandingPage: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
               <Cpu className="w-5 h-5" />
             </div>
-            <h3 className="font-display font-bold text-lg text-white">Full-Spectrum OCR & Extraction</h3>
+            <h3 className="font-display font-bold text-lg text-white">Document Extraction</h3>
             <p className="text-xs text-muted leading-relaxed">
-              Native extraction using PyMuPDF for digital PDFs and OCR pipeline for scanned circulars, images, Word DOCX, and plain text.
+              Extract text from digital PDFs, Word DOCX and plain text. Image and scanned PDF support depends on an available OCR engine; failed extraction is clearly reported.
             </p>
           </div>
 

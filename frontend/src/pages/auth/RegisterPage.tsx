@@ -107,8 +107,6 @@ export const RegisterPage: React.FC = () => {
               className="w-full px-3 py-2.5 rounded-xl bg-surface border border-white/10 text-white text-xs focus:outline-none focus:border-primary/50"
             >
               <option value="STUDENT">Student</option>
-              <option value="ADMIN">Administrator</option>
-              <option value="FACULTY">Faculty</option>
             </select>
           </div>
         </div>

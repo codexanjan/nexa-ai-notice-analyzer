@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { noticeApi } from '../../services/noticeApi';
 import { Notice } from '../../types';
@@ -20,21 +20,32 @@ export const NoticeManagementPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [error, setError] = useState('');
 
-  const fetchNotices = async () => {
+  const fetchNotices = useCallback(async () => {
     try {
       const data = await noticeApi.getNotices({ search, limit: 100 });
       setNotices(data);
+      setError('');
     } catch (err) {
-      console.error(err);
+      setError('Unable to load notices. Please refresh.');
     } finally {
       setLoading(false);
     }
-  };
+  }, [search]);
 
   useEffect(() => {
     fetchNotices();
-  }, [search]);
+  }, [fetchNotices]);
+
+  const changeStatus = async (notice: Notice) => {
+    try {
+      await noticeApi.updateNotice(notice.id, {status: notice.status === 'PUBLISHED' ? 'ARCHIVED' : 'PUBLISHED'});
+      await fetchNotices();
+    } catch {
+      setError('Unable to change status. The public admin demo is read-only.');
+    }
+  };
 
   const handleDelete = async (id: string) => {
     if (!window.confirm("Are you sure you want to delete this notice?")) return;
@@ -43,7 +54,7 @@ export const NoticeManagementPage: React.FC = () => {
       await noticeApi.deleteNotice(id);
       setNotices((prev) => prev.filter((n) => n.id !== id));
     } catch (err) {
-      console.error(err);
+      setError('Unable to delete notice. The public admin demo is read-only.');
     } finally {
       setDeletingId(null);
     }
@@ -51,6 +62,7 @@ export const NoticeManagementPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {error && <p role="alert" className="text-critical text-sm">{error}</p>}
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-white/10">
         <div>
@@ -128,6 +140,7 @@ export const NoticeManagementPage: React.FC = () => {
                       </Link>
                       <span className="text-[10px] font-mono text-muted block mt-0.5">
                         {n.department || 'Academic Affairs'}
+                        {' · '}{n.status}
                       </span>
                     </td>
                     <td className="py-3.5 px-4">
@@ -147,6 +160,8 @@ export const NoticeManagementPage: React.FC = () => {
                     </td>
                     <td className="py-3.5 px-4 text-right">
                       <div className="flex items-center justify-end gap-2">
+                        <Link className="text-primary text-xs" to={`/admin/create?edit=${n.id}`}>Edit</Link>
+                        <button className="text-primary text-xs" onClick={() => changeStatus(n)}>{n.status === 'PUBLISHED' ? 'Archive' : 'Publish'}</button>
                         <Link
                           to={`/notices/${n.id}`}
                           className="p-1.5 rounded-lg text-muted hover:text-white hover:bg-white/5 transition"

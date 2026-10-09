@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { NoticeCard } from '../../components/notices/NoticeCard';
 import { NoticeFilters } from '../../components/notices/NoticeFilters';
 import { noticeApi } from '../../services/noticeApi';
@@ -8,6 +8,8 @@ import { FileText, Loader2, Sparkles } from 'lucide-react';
 export const NoticeFeedPage: React.FC = () => {
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [lastUpdated, setLastUpdated] = useState('');
 
   // Filters state
   const [search, setSearch] = useState('');
@@ -15,8 +17,7 @@ export const NoticeFeedPage: React.FC = () => {
   const [importance, setImportance] = useState('ALL');
   const [urgency, setUrgency] = useState('ALL');
 
-  const fetchNotices = async () => {
-    setLoading(true);
+  const fetchNotices = useCallback(async () => {
     try {
       const data = await noticeApi.getNotices({
         category: category !== 'ALL' ? category : undefined,
@@ -26,19 +27,22 @@ export const NoticeFeedPage: React.FC = () => {
         limit: 100,
       });
       setNotices(data);
+      setError('');
+      setLastUpdated(new Date().toLocaleTimeString());
     } catch (err) {
-      console.error(err);
+      setError('Could not refresh notices. Please try again.');
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, category, importance, urgency]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchNotices();
     }, 250);
-    return () => clearTimeout(timer);
-  }, [search, category, importance, urgency]);
+    const interval = setInterval(fetchNotices, 15000);
+    return () => { clearTimeout(timer); clearInterval(interval); };
+  }, [fetchNotices]);
 
   const handleResetFilters = () => {
     setSearch('');
@@ -49,6 +53,7 @@ export const NoticeFeedPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      <div className="flex flex-wrap items-center gap-3 text-xs text-muted"><span aria-live="polite">{error || (lastUpdated ? `Updated ${lastUpdated} · Refreshes every 15 seconds` : 'Connecting to notice feed…')}</span><button onClick={fetchNotices} className="text-primary underline">Refresh now</button></div>
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>

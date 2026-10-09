@@ -8,6 +8,7 @@ def extract_text_from_docx(file_bytes: bytes) -> str:
         import docx
         doc = docx.Document(io.BytesIO(file_bytes))
         paragraphs = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
+        paragraphs.extend(' | '.join(cell.text.strip() for cell in row.cells) for table in doc.tables for row in table.rows)
         return "\n\n".join(paragraphs)
     except Exception as e:
         print(f"[DocumentParser] Error parsing docx: {e}")
@@ -29,12 +30,11 @@ def extract_document_text(filename: str, file_bytes: bytes) -> str:
             # try OCR as fallback for scanned PDF
             text = extract_text_from_image(file_bytes)
         return text
-    elif ext in [".docx", ".doc"]:
+    elif ext == ".docx":
         return extract_text_from_docx(file_bytes)
     elif ext in [".png", ".jpg", ".jpeg", ".webp", ".bmp"]:
         return extract_text_from_image(file_bytes)
     elif ext in [".txt", ".text"]:
         return extract_text_from_txt(file_bytes)
     else:
-        # Default try as text
-        return extract_text_from_txt(file_bytes)
+        raise ValueError("Unsupported file type. Use PDF, DOCX, TXT, PNG, JPG, WEBP or BMP.")

@@ -1,4 +1,5 @@
 import os
+import secrets
 from pathlib import Path
 from pydantic import BaseModel
 
@@ -21,11 +22,12 @@ except OSError:
 class Settings(BaseModel):
     PROJECT_NAME: str = "NEXA — AI Notice Intelligence System"
     TAGLINE: str = "Read Less. Know More."
-    VERSION: str = "1.0.0"
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "nexa-super-secret-production-key-2026-b8ff3d")
+    VERSION: str = "1.1.0"
+    SECRET_KEY: str = os.getenv("SECRET_KEY") or secrets.token_urlsafe(48)
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     MONGODB_URI: str = os.getenv("MONGODB_URI", "")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "")
     DATABASE_NAME: str = os.getenv("DATABASE_NAME", "nexa_db")
     STORAGE_DIR: Path = STORAGE_DIR
     UPLOAD_DIR: Path = UPLOAD_DIR

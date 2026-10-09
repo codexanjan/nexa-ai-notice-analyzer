@@ -77,8 +77,8 @@ class AIAnalysisResult(BaseModel):
     explanation_factors: ExplanationFactors
 
 class NoticeCreate(BaseModel):
-    title: str = Field(..., min_length=3)
-    content: str = Field(..., min_length=5)
+    title: str = Field(..., min_length=3, max_length=200)
+    content: str = Field(..., min_length=5, max_length=20000)
     category: Optional[NoticeCategory] = None
     department: Optional[str] = None
     deadline: Optional[str] = None
@@ -89,8 +89,8 @@ class NoticeCreate(BaseModel):
     attachment_url: Optional[str] = None
 
 class NoticeUpdate(BaseModel):
-    title: Optional[str] = None
-    content: Optional[str] = None
+    title: Optional[str] = Field(None, min_length=3, max_length=200)
+    content: Optional[str] = Field(None, min_length=5, max_length=20000)
     category: Optional[NoticeCategory] = None
     department: Optional[str] = None
     deadline: Optional[str] = None

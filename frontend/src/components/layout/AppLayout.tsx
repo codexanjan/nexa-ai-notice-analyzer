@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { ServiceStatus } from './ServiceStatus';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
       {/* Sticky Navigation Bar */}
       <Navbar />
+      <ServiceStatus />
 
       {/* Main Page Body */}
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">

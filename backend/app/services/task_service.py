@@ -77,7 +77,7 @@ async def update_task(task_id: str, updates: Dict[str, Any]) -> Optional[Dict[st
     
     risk_calc = calculate_deadline_risk(
         time_pressure_score=t_score,
-        notice_importance_score=existing.get("risk_score", 50),
+        notice_importance_score=(await db_manager.get_collection("notices").find_one({"_id": existing.get("notice_id")} ) or {}).get("importance", 50),
         status=new_status
     )
     updates["risk_score"] = risk_calc["risk_score"]

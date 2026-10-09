@@ -39,4 +39,4 @@ def extract_text_from_image(file_bytes: bytes) -> str:
     except Exception as e:
         print(f'[ImageOCR] pytesseract not available or failed: {e}')
     
-    return 'Official College Circular Notice: End Semester Examination Schedule announced with mandatory verification deadline.'
+    raise ValueError("Image OCR is unavailable or no text was detected. Upload a text PDF, DOCX or TXT file instead.")

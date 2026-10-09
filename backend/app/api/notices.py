@@ -11,21 +11,25 @@ from app.services.notice_service import (
 )
 from app.services.notification_service import create_notification
 from app.ocr.document_parser import extract_document_text
-from app.api.auth import get_current_user, require_admin
+from app.api.auth import get_current_user, require_admin, require_user
 
 router = APIRouter(prefix="/notices", tags=["Notices"])
 
 @router.post("/upload")
 async def upload_notice_file(
     file: UploadFile = File(...),
-    current_user: Optional[dict] = Depends(get_current_user)
+    current_user: dict = Depends(require_user)
 ):
     """
     Accepts PDF, PNG, JPG, DOCX, TXT files.
     Performs Text Extraction (PyMuPDF / OCR) and runs the entire AI Intelligence pipeline.
     """
+    if current_user.get("role") != "ADMIN":
+        raise HTTPException(status_code=403, detail="Admin privileges required")
     try:
-        file_bytes = await file.read()
+        file_bytes = await file.read(10 * 1024 * 1024 + 1)
+        if len(file_bytes) > 10 * 1024 * 1024:
+            raise HTTPException(status_code=413, detail="Maximum upload size is 10 MB")
         extracted_text = extract_document_text(file.filename, file_bytes)
         if not extracted_text or len(extracted_text.strip()) < 5:
             raise HTTPException(
@@ -41,6 +45,8 @@ async def upload_notice_file(
         }
     except HTTPException:
         raise
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -52,7 +58,10 @@ async def analyze_raw_notice(payload: dict):
     """
     Runs the NEXA AI pipeline on pasted or input text and returns full structured intelligence.
     """
-    content = payload.get("content", "").strip()
+    raw_content = payload.get("content", "")
+    if not isinstance(raw_content, str) or len(raw_content) > 20000:
+        raise HTTPException(status_code=422, detail="Content must be text of at most 20,000 characters")
+    content = raw_content.strip()
     if not content:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -68,14 +77,15 @@ async def list_notices(
     urgency: Optional[str] = Query(None),
     search: Optional[str] = Query(None),
     status: Optional[str] = Query(None),
-    limit: int = Query(100, le=500)
+    limit: int = Query(100, ge=1, le=500),
+    current_user: Optional[dict] = Depends(get_current_user)
 ):
     docs = await get_notices(
         category=category,
         importance_level=importance,
         urgency_level=urgency,
         search=search,
-        status=status,
+        status=status if current_user and current_user.get("role") == "ADMIN" else "PUBLISHED",
         limit=limit
     )
     return docs
@@ -101,9 +111,9 @@ async def create_new_notice(
     return doc
 
 @router.get("/{notice_id}", response_model=NoticeResponse)
-async def get_single_notice(notice_id: str):
+async def get_single_notice(notice_id: str, current_user: Optional[dict] = Depends(get_current_user)):
     doc = await get_notice_by_id(notice_id)
-    if not doc:
+    if not doc or (doc.get("status") != "PUBLISHED" and (not current_user or current_user.get("role") != "ADMIN")):
         raise HTTPException(status_code=404, detail="Notice not found")
     return doc
 

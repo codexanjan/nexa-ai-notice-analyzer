@@ -34,20 +34,26 @@ async def get_notifications(user_id: Optional[str] = None, limit: int = 50) -> L
         query["$or"] = [{"user_id": user_id}, {"user_id": None}]
     
     docs = await notifications_col.find(query=query, sort=[("created_at", -1)], limit=limit)
+    for doc in docs:
+        doc["read"] = user_id in doc.get("read_by", []) if user_id else False
     return docs
 
-async def mark_notification_as_read(notification_id: str) -> bool:
+async def mark_notification_as_read(notification_id: str, user_id: str) -> bool:
     notifications_col = db_manager.get_collection("notifications")
-    res = await notifications_col.update_one({"_id": notification_id}, {"$set": {"read": True}})
+    doc = await notifications_col.find_one({"_id": notification_id})
+    if not doc or doc.get("user_id") not in (None, user_id):
+        return False
+    read_by = list(set(doc.get("read_by", []) + [user_id]))
+    res = await notifications_col.update_one({"_id": notification_id}, {"$set": {"read_by": read_by}})
     return res > 0
 
 async def mark_all_notifications_as_read(user_id: Optional[str] = None) -> int:
     notifications_col = db_manager.get_collection("notifications")
     # update all matching
-    notifications = await notifications_col.find()
+    notifications = await get_notifications(user_id=user_id, limit=500)
     count = 0
     for n in notifications:
         if not n.get("read", False):
-            await notifications_col.update_one({"_id": n["_id"]}, {"$set": {"read": True}})
+            await mark_notification_as_read(n["_id"], user_id)
             count += 1
     return count

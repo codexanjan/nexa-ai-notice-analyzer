@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { noticeApi } from '../../services/noticeApi';
 import { ScoreGauge } from '../../components/ui/ScoreGauge';
 import { CategoryBadge, LevelBadge } from '../../components/ui/Badge';
-import { AIAnalysisResult } from '../../types';
+import { AIAnalysisResult, Notice } from '../../types';
 import {
   FilePlus,
   Sparkles,
@@ -16,6 +16,8 @@ import {
 
 export const CreateNoticePage: React.FC = () => {
   const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const editId = params.get('edit');
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -29,6 +31,14 @@ export const CreateNoticePage: React.FC = () => {
   const [previewAnalysis, setPreviewAnalysis] = useState<AIAnalysisResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    if (!editId) return;
+    noticeApi.getNoticeById(editId).then(doc => {
+      setTitle(doc.title); setContent(doc.content); setCategory(doc.category);
+      setDepartment(doc.department || ''); setDeadline(doc.deadline || '');
+      setEventDate(doc.event_date || ''); setLocation(doc.location || '');
+    }).catch(() => setError('Could not load this notice for editing.'));
+  }, [editId]);
 
   const handleAnalyze = async () => {
     if (!content.trim()) {
@@ -60,7 +70,8 @@ export const CreateNoticePage: React.FC = () => {
     setError(null);
     setSubmitting(true);
     try {
-      const doc = await noticeApi.createNotice({
+      const save = editId ? (data: Parameters<typeof noticeApi.createNotice>[0]) => noticeApi.updateNotice(editId, {...data, category: data.category as Notice['category'], status: data.status as Notice['status']}) : noticeApi.createNotice;
+      const doc = await save({
         title,
         content,
         category: category || undefined,
@@ -82,7 +93,7 @@ export const CreateNoticePage: React.FC = () => {
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="pb-2 border-b border-white/10">
         <h1 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
-          Create & Analyze Campus Notice
+          {editId ? 'Edit Campus Notice' : 'Create & Analyze Campus Notice'}
         </h1>
         <p className="text-xs text-muted font-mono mt-1">
           Draft official circulars with immediate AI importance & urgency scoring

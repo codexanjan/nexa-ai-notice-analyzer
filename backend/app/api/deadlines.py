@@ -3,11 +3,12 @@ from typing import Dict, Any, List
 from app.services.notice_service import get_notices
 from app.services.task_service import get_tasks
 from app.ai.importance_engine import estimate_hours_remaining
+from app.api.auth import get_current_user
 
 router = APIRouter(prefix="/deadlines", tags=["Deadlines"])
 
 @router.get("")
-async def get_deadline_center_data():
+async def get_deadline_center_data(current_user = Depends(get_current_user)):
     """
     Groups actionable items and notices into:
     - Due Today (<= 24 hours)
@@ -15,8 +16,8 @@ async def get_deadline_center_data():
     - Upcoming (> 168 hours)
     - Completed
     """
-    notices = await get_notices(limit=200)
-    tasks = await get_tasks()
+    notices = await get_notices(limit=200, status="PUBLISHED")
+    tasks = await get_tasks(user_id=current_user["_id"]) if current_user else []
 
     due_today = []
     due_this_week = []
@@ -50,9 +51,9 @@ async def get_deadline_center_data():
             "status": t.get("status", "Pending"),
             "notice_id": t.get("notice_id")
         }
-        if hours <= 24:
+        if hours is not None and hours <= 24:
             due_today.append(item)
-        elif hours <= 168:
+        elif hours is not None and hours <= 168:
             due_this_week.append(item)
         else:
             upcoming.append(item)

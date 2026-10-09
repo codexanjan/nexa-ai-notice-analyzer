@@ -61,10 +61,10 @@ def test_full_api_workflow():
         assert "due_this_week" in deadlines_data
 
         # 7. Tasks endpoint
-        tasks_res = client.get("/api/tasks")
+        tasks_res = client.get("/api/tasks", headers=headers)
         assert tasks_res.status_code == 200
         tasks = tasks_res.json()
-        assert len(tasks) >= 2
+        assert tasks == []  # Seeded sample tasks are not personal admin tasks.
 
         # 8. Analytics Dashboard
         analytics_res = client.get("/api/analytics/dashboard")

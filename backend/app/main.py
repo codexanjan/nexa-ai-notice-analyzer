@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -92,8 +93,8 @@ async def seed_initial_data():
             "student_id": "ADM-001",
             "role": "ADMIN"
         }
+        admin_doc["demo"] = True
         await users_col.insert_one(admin_doc)
-        print("Seeded default admin: admin@nexa.edu / admin123")
 
     # 2. Student User
     student = await users_col.find_one({"email": "student@nexa.edu"})
@@ -106,7 +107,10 @@ async def seed_initial_data():
             "role": "STUDENT"
         }
         await users_col.insert_one(student_doc)
-        print("Seeded default student: student@nexa.edu / student123")
+    bootstrap_email = os.getenv("ADMIN_EMAIL")
+    bootstrap_password = os.getenv("ADMIN_PASSWORD")
+    if bootstrap_email and bootstrap_password and not await users_col.find_one({"email": bootstrap_email.lower()}):
+        await users_col.insert_one({"name": "Institution Administrator", "email": bootstrap_email.lower(), "password": get_password_hash(bootstrap_password), "role": "ADMIN", "demo": False})
 
     # 3. Seed sample notices if empty
     existing_notices = await get_notices(limit=5)
@@ -145,16 +149,15 @@ async def seed_initial_data():
             )
 
 _initialized = False
+_init_lock = asyncio.Lock()
 
 async def ensure_initialized():
     global _initialized
-    if not _initialized:
-        _initialized = True
-        try:
+    async with _init_lock:
+        if not _initialized:
             await db_manager.initialize()
             await seed_initial_data()
-        except Exception as e:
-            print(f"[Init] Error during initialization: {e}")
+            _initialized = True
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -216,7 +219,9 @@ def api_root():
 def health():
     return {
         "status": "healthy",
-        "database": "mongodb" if db_manager.is_mongodb else "persistent_document_store",
+        "database": "postgresql" if db_manager.is_postgres else "mongodb" if db_manager.is_mongodb else "local_document_store",
+        "durable": db_manager.is_durable or not bool(os.getenv("VERCEL")),
+        "mode": "live" if db_manager.is_durable else "demo",
         "model_loaded": True
     }
 
@@ -234,8 +239,8 @@ if frontend_dist.exists() and (frontend_dist / "index.html").exists():
 
     @app.get("/{full_path:path}")
     async def serve_spa(full_path: str):
-        target = frontend_dist / full_path
-        if target.is_file():
+        target = (frontend_dist / full_path).resolve()
+        if target.is_relative_to(frontend_dist.resolve()) and target.is_file():
             return FileResponse(target)
         return FileResponse(frontend_dist / "index.html")
 else:

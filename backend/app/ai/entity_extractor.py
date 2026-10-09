@@ -144,14 +144,14 @@ def extract_actions(text: str) -> List[str]:
     actions = []
     # Search for imperative clauses and action triggers
     action_triggers = [
-        (r'attend\s+(?:the\s+)?([a-zA-Z\s]{4,30})', "Attend {}"),
-        (r'carry\s+(?:their\s+)?([a-zA-Z\s]{4,30})', "Carry {}"),
-        (r'submit\s+(?:the\s+)?([a-zA-Z\s]{4,35})', "Submit {}"),
-        (r'pay\s+(?:the\s+)?([a-zA-Z\s]{4,30})', "Pay {}"),
-        (r'register\s+(?:for\s+)?([a-zA-Z\s]{4,30})', "Register for {}"),
-        (r'clear\s+(?:all\s+)?([a-zA-Z\s]{4,30})', "Clear {}"),
-        (r'collect\s+(?:from\s+)?([a-zA-Z\s]{4,30})', "Collect {}"),
-        (r'report\s+(?:to\s+)?([a-zA-Z\s]{4,30})', "Report to {}"),
+        (r'attend\s+(?:the\s+)?([a-zA-Z\s]{4,200})\b', "Attend {}"),
+        (r'carry\s+(?:their\s+)?([a-zA-Z\s]{4,200})\b', "Carry {}"),
+        (r'submit\s+(?:the\s+)?([a-zA-Z\s]{4,200})\b', "Submit {}"),
+        (r'pay\s+(?:the\s+)?([a-zA-Z\s]{4,200})\b', "Pay {}"),
+        (r'register\s+(?:for\s+)?([a-zA-Z\s]{4,200})\b', "Register for {}"),
+        (r'clear\s+(?:all\s+)?([a-zA-Z\s]{4,200})\b', "Clear {}"),
+        (r'collect\s+(?:from\s+)?([a-zA-Z\s]{4,200})\b', "Collect {}"),
+        (r'report\s+(?:to\s+)?([a-zA-Z\s]{4,200})\b', "Report to {}"),
     ]
     text_clean = text.replace("\n", " ")
     for trigger, template in action_triggers:
@@ -160,7 +160,7 @@ def extract_actions(text: str) -> List[str]:
             target = m.group(1).strip()
             # Stop at punctuation or prepositions
             target = re.split(r'[,.;]|\b(?:on|at|by|before|in|with|to)\b', target)[0].strip()
-            if 3 <= len(target) <= 35:
+            if 3 <= len(target) <= 200:
                 act = template.format(target)
                 act = act[0].upper() + act[1:]
                 if act not in actions:

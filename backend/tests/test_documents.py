@@ -27,3 +27,7 @@ def test_failed_ocr_never_invents_text(monkeypatch):
     monkeypatch.setattr(ocr, 'get_ocr_engine', lambda: False)
     with pytest.raises(ValueError, match='OCR'):
         ocr.extract_text_from_image(b'invalid image')
+
+def test_actions_keep_complete_requirements():
+    from app.ai.entity_extractor import extract_actions
+    assert extract_actions('Students must carry their college ID cards and hall tickets.') == ['Carry college ID cards and hall tickets']

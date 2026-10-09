@@ -46,3 +46,14 @@ def test_numeric_sort_and_notification_queries(tmp_path):
         docs = await col.find({'$or':[{'user_id':'a'}, {'user_id':None}]})
         assert len(docs) == 2
     asyncio.run(exercise())
+
+def test_student_registration_and_invalid_password():
+    with TestClient(app) as client:
+        account = {'name':'New student', 'email':'new@example.com', 'password':'secure123'}
+        registered = client.post('/api/auth/register', json=account)
+        assert registered.status_code == 200
+        assert registered.json()['user']['role'] == 'STUDENT'
+        headers = {'Authorization':'Bearer ' + registered.json()['access_token']}
+        assert client.get('/api/tasks', headers=headers).json() == []
+        assert client.post('/api/auth/register', json=account).status_code == 400
+        assert client.post('/api/auth/register', json={**account, 'email':'other@example.com','password':'😀'*30}).status_code == 422

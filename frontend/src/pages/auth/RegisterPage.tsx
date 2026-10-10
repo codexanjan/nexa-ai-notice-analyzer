@@ -37,7 +37,7 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-8 p-8 rounded-3xl glass-panel border border-white/15 bg-surface/90 shadow-2xl space-y-6">
+    <div className="w-full min-w-0 max-w-md mx-auto my-8 p-5 sm:p-8 rounded-3xl glass-panel border border-white/15 bg-surface/90 shadow-2xl space-y-6">
       <div className="text-center space-y-2">
         <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/40 flex items-center justify-center text-primary mx-auto shadow-glow-primary">
           <Sparkles className="w-6 h-6" />
@@ -84,7 +84,7 @@ export const RegisterPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className="text-xs font-mono text-muted block mb-1.5">Student / Staff ID</label>
             <div className="relative">

@@ -2,6 +2,8 @@
 
 **Live app:** [nexa-anjan.vercel.app](https://nexa-anjan.vercel.app)
 
+**Download:** [latest release](https://github.com/codexanjan/nexa-ai-notice-analyzer/releases/latest). Choose the portable ZIP for the built interface and Windows launcher. See [download instructions](DOWNLOAD.md).
+
 ## Try before signing up
 
 The home page explains both portals and includes a real text-analysis sandbox. Paste a circular to see its category, summary, importance, urgency and extracted actions. The classifier uses exported trained weights and transparent scoring rules. Verify dates and actions against the original circular. Initial campus notices are fictional samples.

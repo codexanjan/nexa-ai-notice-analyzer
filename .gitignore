@@ -10,3 +10,4 @@ __pycache__
 .env*
 /.agents/
 /skills-lock.json
+.venv/

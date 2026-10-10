@@ -42,23 +42,23 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-8 p-8 rounded-3xl glass-panel border border-white/15 bg-surface/90 shadow-2xl space-y-6">
+    <div className="w-full min-w-0 max-w-md mx-auto my-8 p-5 sm:p-8 rounded-3xl glass-panel border border-white/15 bg-surface/90 shadow-2xl space-y-6">
       <div className="text-center space-y-2">
         <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/40 flex items-center justify-center text-primary mx-auto shadow-glow-primary">
           <Sparkles className="w-6 h-6" />
         </div>
-        <h1 className="font-display font-bold text-2xl text-white">NEXA {portal} Portal</h1>
+        <h1 className="font-display font-bold text-xl sm:text-2xl text-white break-words">NEXA {portal} Portal</h1>
         <p className="text-xs text-muted">AI Notice Intelligence System</p>
       </div>
 
-      <div className="flex justify-center gap-4 text-sm"><Link to="/login?portal=student" className="text-primary">Student sign-in</Link><Link to="/login?portal=admin" className="text-warning">Admin sign-in</Link></div>
+      <div className="flex flex-wrap justify-center gap-3 text-sm"><Link to="/login?portal=student" className="text-primary">Student sign-in</Link><Link to="/login?portal=admin" className="text-warning">Admin sign-in</Link></div>
 
       {/* Quick Demo Credentials Bar */}
       <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
         <span className="text-[11px] font-mono text-muted uppercase tracking-wider block text-center">
           Quick Demo Credentials
         </span>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-2">
           <button
             type="button"
             onClick={fillStudentDemo}

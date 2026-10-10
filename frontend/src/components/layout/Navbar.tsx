@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
             </Link>}
 
             {/* Notifications Dropdown */}
-            <div className="relative">
+            <div className={user ? 'relative' : 'hidden'}>
               <button
                 type="button"
                 onClick={() => setShowNotifDropdown(!showNotifDropdown)}
@@ -247,7 +247,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   to="/register"
-                  className="px-3 py-1.5 rounded-xl bg-primary text-black text-xs font-bold transition hover:bg-primary-hover shadow-glow-primary"
+                  className="hidden sm:block px-3 py-1.5 rounded-xl bg-primary text-black text-xs font-bold transition hover:bg-primary-hover shadow-glow-primary"
                 >
                   Get Started
                 </Link>

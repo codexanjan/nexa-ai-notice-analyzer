@@ -1,4 +1,5 @@
 .git
+.venv
 .vercel
 .agents
 skills-lock.json

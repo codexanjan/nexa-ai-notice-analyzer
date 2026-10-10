@@ -8,6 +8,9 @@ export interface AuthResponse {
 }
 
 export const authApi = {
+  googleLogin: async (data: { credential: string; challenge: string; password: string }): Promise<AuthResponse> => {
+    return (await api.post<AuthResponse>('/auth/google', data)).data;
+  },
   login: async (credentials: { email: string; password: string }): Promise<AuthResponse> => {
     const res = await api.post<AuthResponse>('/auth/login', credentials);
     return res.data;

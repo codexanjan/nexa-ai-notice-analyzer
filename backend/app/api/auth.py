@@ -78,7 +78,7 @@ async def register(user_data: UserRegister):
 async def login(credentials: UserLogin):
     users_col = db_manager.get_collection("users")
     user = await users_col.find_one({"email": credentials.email.lower()})
-    if not user or not verify_password(credentials.password, user["password"]):
+    if not user or not verify_password(credentials.password, user.get("password", "")):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid email or password"

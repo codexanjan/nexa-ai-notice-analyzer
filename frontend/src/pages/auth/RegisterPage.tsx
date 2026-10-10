@@ -1,3 +1,4 @@
+import { GoogleSignIn } from '../../components/GoogleSignIn';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../store/authStore';
@@ -52,6 +53,8 @@ export const RegisterPage: React.FC = () => {
           <span>{error}</span>
         </div>
       )}
+
+      <GoogleSignIn password={password} />
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

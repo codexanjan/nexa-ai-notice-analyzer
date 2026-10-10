@@ -2,7 +2,7 @@
 
 For immediate use, open https://nexa-anjan.vercel.app.
 
-For a local copy, download **NEXA-1.2.1-portable.zip** from the [GitHub release](https://github.com/codexanjan/nexa-ai-notice-analyzer/releases/latest). This is a Python web application with its frontend already built, not a native Windows executable.
+For a local copy, download **NEXA-1.3.0-portable.zip** from the [GitHub release](https://github.com/codexanjan/nexa-ai-notice-analyzer/releases/latest). This is a Python web application with its frontend already built, not a native Windows executable.
 
 ## Windows
 

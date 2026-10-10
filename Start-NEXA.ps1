@@ -12,7 +12,7 @@ if (-not (Test-Path -LiteralPath $nexaPython)) {
     }
     if ($LASTEXITCODE -ne 0) { throw 'Could not create the Python environment.' }
 }
-$nexaMarker = Join-Path $PSScriptRoot '.venv\nexa-ready-1.2.1'
+$nexaMarker = Join-Path $PSScriptRoot '.venv\nexa-ready-1.3.0'
 if (-not (Test-Path -LiteralPath $nexaMarker)) {
     & $nexaPython -m pip install -r requirements.txt
     if ($LASTEXITCODE -ne 0) { throw 'Dependency setup failed. Check your internet connection and retry.' }

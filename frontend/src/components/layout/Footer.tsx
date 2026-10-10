@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
             <p className="text-xs text-muted max-w-sm leading-relaxed">
               AI-Powered College Notice Intelligence System. Automatically converts unstructured campus circulars into structured, prioritized, explainable and actionable student intelligence.
             </p>
-            <div className="flex items-center gap-3 pt-2 text-[11px] font-mono text-primary">
+            <div className="flex flex-wrap items-center gap-3 pt-2 text-[11px] font-mono text-primary">
               <span className="flex items-center gap-1">
                 <Cpu className="w-3.5 h-3.5" /> PyMuPDF & OCR
               </span>

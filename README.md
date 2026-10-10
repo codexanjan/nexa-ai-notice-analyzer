@@ -1,5 +1,9 @@
 # NEXA — Campus Notice Intelligence
 
+> Read less. Know more. Turn campus circulars into clear priorities, deadlines and actions.
+
+![NEXA homepage with student and administrator portal entry points](docs/screenshots/home.jpg)
+
 **Live app:** [nexa-anjan.vercel.app](https://nexa-anjan.vercel.app)
 
 **Download:** [latest release](https://github.com/codexanjan/nexa-ai-notice-analyzer/releases/latest). Choose the portable ZIP for the built interface and Windows launcher. See [download instructions](DOWNLOAD.md).
@@ -10,6 +14,10 @@ The home page explains both portals and includes a real text-analysis sandbox. P
 
 ## Student portal
 
+![Student dashboard showing priority scores, notice summaries and upcoming deadlines](docs/screenshots/student-dashboard.jpg)
+
+**Your campus at a glance:** spot urgent notices, understand their importance, and see upcoming deadlines in one view. Screenshots use fictional demo notices.
+
 - Search and filter published notices by category, importance and urgency.
 - Read summaries and explanations of each priority score.
 - Save notice actions or custom tasks to your personal taskboard and track completion.
@@ -19,6 +27,10 @@ The home page explains both portals and includes a real text-analysis sandbox. P
 [Student sign-in](https://nexa-anjan.vercel.app/login?portal=student)
 
 ## Administrator portal
+
+![Administrator dashboard showing category and importance charts with notice creation and upload tools](docs/screenshots/admin-dashboard.jpg)
+
+**From circular to campus update:** analyze documents, manage publishing and review notice trends. The screenshot shows the public read-only admin preview.
 
 - Separate navigation for dashboard, notice management, creation, upload and analytics.
 - Analyze digital PDFs, DOCX documents (including tables) and TXT files.

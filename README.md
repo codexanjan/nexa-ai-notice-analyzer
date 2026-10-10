@@ -51,14 +51,6 @@ Use Student Demo or Admin Demo on the sign-in page to fill credentials, then sig
 
 The public admin demo is read-only with a durable database. Create a personal student account for your own tasks. Do not place private information in shared demo accounts.
 
-## Google sign-in
-
-Google Identity Services is integrated into sign-in and registration. The backend verifies Google signatures, audience, expiry, verified email and a short-lived sign-in nonce before issuing a NEXA session. New accounts receive **student** access. Existing accounts must provide their NEXA password on the first Google sign-in to link safely; their role stays unchanged. Returning linked users need only Google.
-
-To activate it, create a **Web application** OAuth client in [Google Cloud](https://console.cloud.google.com/auth/clients), configure your consent screen, and add `https://nexa-anjan.vercel.app` to **Authorized JavaScript origins**. Set `GOOGLE_CLIENT_ID` in Vercel Production and redeploy. No client secret or redirect URI is needed for this popup credential flow. For local development, also allow `http://localhost:5173` (or the exact origin you use). While the Google app is in testing, add permitted test users; publish its consent configuration for public access.
-
-Without a configured client ID, the app clearly states that Google sign-in is pending and keeps email/demo sign-in available. Real Google account sign-in requires a valid client ID and authorized origin; mocked backend tests do not replace that final live check.
-
 ## Production storage
 
 Production uses a dedicated Neon PostgreSQL database through Vercel's existing free integration. Accounts, notices, tasks and notification read states persist across deployments. MongoDB and a local JSON development store are also supported.

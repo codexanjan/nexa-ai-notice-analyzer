@@ -10,7 +10,6 @@ from app.core.security import get_password_hash
 from app.services.notice_service import create_notice, get_notices
 from app.services.task_service import create_task
 from app.services.notification_service import create_notification
-from app.api.google_auth import router as google_auth_router
 from app.api.auth import router as auth_router
 from app.api.notices import router as notices_router
 from app.api.deadlines import router as deadlines_router
@@ -187,7 +186,6 @@ app.add_middleware(
 )
 
 # Include API Routers under /api
-app.include_router(google_auth_router, prefix="/api")
 app.include_router(auth_router, prefix="/api")
 app.include_router(notices_router, prefix="/api")
 app.include_router(deadlines_router, prefix="/api")

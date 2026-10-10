@@ -10,7 +10,6 @@ interface AuthContextType {
   isStudent: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (data: { name: string; email: string; password: string; student_id?: string; role?: UserRole }) => Promise<void>;
-  googleLogin: (credential: string, challenge: string, password?: string) => Promise<User>;
   logout: () => void;
 }
 
@@ -71,15 +70,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem('nexa_user', JSON.stringify(res.user));
   };
 
-  const googleLogin = async (credential: string, challenge: string, password = '') => {
-    const res = await authApi.googleLogin({ credential, challenge, password });
-    setToken(res.access_token);
-    setUser(res.user);
-    localStorage.setItem('nexa_token', res.access_token);
-    localStorage.setItem('nexa_user', JSON.stringify(res.user));
-    return res.user;
-  };
-
   const isAdmin = user?.role === 'ADMIN';
   const isStudent = user?.role === 'STUDENT' || !user?.role;
 
@@ -92,7 +82,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAdmin,
         isStudent,
         login,
-        googleLogin,
         register,
         logout,
       }}

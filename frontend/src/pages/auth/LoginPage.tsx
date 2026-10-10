@@ -1,4 +1,3 @@
-import { GoogleSignIn } from '../../components/GoogleSignIn';
 import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../store/authStore';
@@ -53,8 +52,6 @@ export const LoginPage: React.FC = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-3 text-sm"><Link to="/login?portal=student" className="text-primary">Student sign-in</Link><Link to="/login?portal=admin" className="text-warning">Admin sign-in</Link></div>
-
-      <GoogleSignIn password={password} />
 
       {/* Quick Demo Credentials Bar */}
       <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
